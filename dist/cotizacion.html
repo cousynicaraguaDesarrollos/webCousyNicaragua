@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Mi cotización | Cousy Nicaragua</title>
+    <meta
+      name="description"
+      content="Revisá tus productos y enviá tu solicitud de cotización por WhatsApp."
+    />
+    <meta name="robots" content="noindex,follow" />
+    <meta name="theme-color" content="#d63163" />
+    <link rel="canonical" href="https://cousynicaragua.com/cotizacion" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Cousy Nicaragua" />
+    <meta property="og:title" content="Mi cotización | Cousy Nicaragua" />
+    <meta
+      property="og:description"
+      content="Revisá tus productos y enviá tu solicitud de cotización por WhatsApp."
+    />
+    <meta property="og:url" content="https://cousynicaragua.com/cotizacion" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/app.css" />
+  </head>
+  <body>
+    <header class="sticky top-0 z-50 border-b border-black/10 bg-white">
+      <div class="container flex h-20 items-center gap-6">
+        <a href="./index.html" class="flex items-center gap-3">
+          <img src="./assets/logo-cousy.png" alt="Cousy" class="h-12 w-12" />
+          <span class="sr-only">Cousy Nicaragua</span>
+        </a>
+        <nav class="ml-auto hidden items-center gap-10 text-sm sm:flex">
+          <a class="text-brand-ink hover:text-brand-accent" href="./index.html">Inicio</a>
+          <a class="text-brand-ink hover:text-brand-accent" href="./tienda.html">Tienda</a>
+          <a class="text-brand-ink hover:text-brand-accent" href="./nosotros.html">Nosotros</a>
+          <a class="text-brand-ink hover:text-brand-accent" href="./sostenibilidad.html">Sostenibilidad</a>
+          <a
+            href="./cotizacion.html"
+            class="relative inline-flex h-11 w-11 items-center justify-center rounded-xl bg-black/5"
+            aria-label="Cotización"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              class="h-6 w-6"
+            >
+              <path d="M6 7h12l-1 14H7L6 7Z" />
+              <path d="M9 7a3 3 0 0 1 6 0" />
+            </svg>
+            <span
+              data-cart-count
+              class="hidden absolute -right-1 -top-1 rounded-full bg-brand-accent px-2 py-0.5 text-xs font-semibold text-white"
+              >0</span
+            >
+          </a>
+        </nav>
+        <a
+          href="./cotizacion.html"
+          class="relative inline-flex h-11 w-11 items-center justify-center rounded-xl bg-black/5 sm:hidden"
+          aria-label="Cotización"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            class="h-6 w-6"
+          >
+            <path d="M6 7h12l-1 14H7L6 7Z" />
+            <path d="M9 7a3 3 0 0 1 6 0" />
+          </svg>
+          <span
+            data-cart-count
+            class="hidden absolute -right-1 -top-1 rounded-full bg-brand-accent px-2 py-0.5 text-xs font-semibold text-white"
+            >0</span
+          >
+        </a>
+      </div>
+    </header>
+
+    <main class="container py-10">
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h1 class="text-4xl tracking-tight">Mi cotización</h1>
+          <p class="mt-2 text-black/70">
+            Productos en la cotización: <span data-cart-count-total class="font-semibold">0</span>
+          </p>
+        </div>
+        <div class="flex gap-3">
+          <button
+            id="quote-clear"
+            type="button"
+            class="rounded-2xl border border-black/10 bg-white px-5 py-3 text-sm font-bold hover:bg-black/5"
+          >
+            Vaciar
+          </button>
+          <button
+            id="quote-send"
+            type="button"
+            class="rounded-2xl bg-brand-accent px-5 py-3 text-sm font-bold text-white shadow-soft hover:brightness-95 active:brightness-90"
+          >
+            Enviar a WhatsApp
+          </button>
+        </div>
+      </div>
+
+      <p id="quote-error" class="mt-6 text-sm font-semibold text-brand-accent"></p>
+
+      <div id="quote-empty" class="mt-10 hidden rounded-3xl bg-white p-8 text-center shadow-soft ring-1 ring-black/5">
+        <p class="text-lg font-extrabold">Tu cotización está vacía</p>
+        <p class="mt-2 text-black/70">Volvé a la tienda y añadí productos para cotizar.</p>
+        <a
+          href="./tienda.html"
+          class="mt-6 inline-flex rounded-2xl bg-brand-accent px-6 py-3 text-sm font-bold text-white hover:brightness-95 active:brightness-90"
+        >
+          Ir a la tienda
+        </a>
+      </div>
+
+      <section class="mt-10 flex flex-col gap-4" id="quote-items"></section>
+
+      <section class="mt-10 rounded-3xl bg-white p-6 shadow-soft ring-1 ring-black/5">
+        <h2 class="text-2xl">Notas para la cotización</h2>
+        <p class="mt-1 text-sm text-black/70">Ejemplo: colores, medidas, branding, fecha de entrega, etc.</p>
+        <textarea
+          id="quote-notes"
+          rows="4"
+          class="mt-4 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm outline-none focus:border-brand-accent"
+          placeholder="Escribí aquí…"
+        ></textarea>
+      </section>
+    </main>
+
+    <footer class="border-t border-black/5">
+      <div class="container py-10 text-sm text-black/60">
+        <p class="font-semibold text-brand-ink">Cousy Nicaragua</p>
+        <p class="mt-1">Al enviar a WhatsApp, tu lista se comparte para cotizar.</p>
+      </div>
+    </footer>
+
+    <script type="module" src="./js/site.js"></script>
+    <script type="module" src="./js/cotizacion.js"></script>
+  </body>
+</html>
