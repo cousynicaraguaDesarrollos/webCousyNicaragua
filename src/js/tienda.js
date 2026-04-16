@@ -10,25 +10,42 @@ function normalize(text) {
 function card(product) {
   const el = document.createElement("article");
   el.className =
-    "group overflow-hidden rounded-2xl bg-white shadow-soft ring-1 ring-black/5";
+    "group flex flex-col overflow-hidden rounded-2xl bg-white shadow-soft ring-1 ring-black/5";
 
   const img = document.createElement("img");
   img.src = product.image || "./assets/placeholder.svg";
-  img.alt = product.name || "Producto";
+  img.alt = product.name
+    ? `${product.name} | producto promocional para empresas`
+    : "Producto promocional para empresas";
   img.loading = "lazy";
-  img.className = "aspect-square w-full object-cover";
+  img.className = "w-full object-cover";
+  img.style.aspectRatio = "5 / 4";
 
   const body = document.createElement("div");
-  body.className = "p-5";
+  body.className = "flex flex-1 flex-col gap-2 p-4";
 
   const title = document.createElement("h3");
-  title.className = "text-base font-normal leading-snug text-brand-ink";
+  title.className = "text-base font-semibold leading-snug text-brand-ink";
   title.textContent = product.name || product.id;
+  title.style.minHeight = "2.75rem";
+  title.style.display = "-webkit-box";
+  title.style.webkitBoxOrient = "vertical";
+  title.style.webkitLineClamp = "2";
+  title.style.overflow = "hidden";
+
+  const meta = document.createElement("p");
+  meta.className = "text-sm font-normal text-black/70";
+  meta.textContent = product.category
+    ? `Personalización corporativa · ${product.category} · Pedidos al por mayor`
+    : "Personalización corporativa · Pedidos al por mayor";
+  meta.style.whiteSpace = "nowrap";
+  meta.style.overflow = "hidden";
+  meta.style.textOverflow = "ellipsis";
 
   const btn = document.createElement("button");
   btn.type = "button";
   btn.className =
-    "mt-4 w-full rounded-xl bg-brand-accent px-4 py-2.5 text-sm font-normal text-white hover:brightness-95 active:brightness-90";
+    "mt-3 w-full rounded-xl bg-brand-accent px-4 py-2.5 text-sm font-normal text-white hover:brightness-95 active:brightness-90";
   btn.textContent = "Añadir a cotización";
   btn.addEventListener("click", () => {
     addToCart(
@@ -40,11 +57,11 @@ function card(product) {
       },
       1
     );
-    btn.textContent = "Añadido";
+    btn.textContent = "Agregado";
     setTimeout(() => (btn.textContent = "Añadir a cotización"), 900);
   });
 
-  body.append(title, btn);
+  body.append(title, meta, btn);
   el.append(img, body);
   return el;
 }
